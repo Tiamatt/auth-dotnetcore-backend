@@ -1,11 +1,12 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
+EXPOSE 44365
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 COPY ["Users.Api/Users.Api.csproj", "Users.Api/"]
+COPY ["Users.Contracts/Users.Contracts.csproj", "Users.Contracts/"]
 RUN dotnet restore "Users.Api/Users.Api.csproj"
 COPY . .
 WORKDIR "/src/Users.Api"

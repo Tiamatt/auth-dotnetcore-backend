@@ -1,11 +1,12 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
+EXPOSE 44364
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 COPY ["Auth.Api/Auth.Api.csproj", "Auth.Api/"]
+COPY ["Auth.Contracts/Auth.Contracts.csproj", "Auth.Contracts/"]
 RUN dotnet restore "Auth.Api/Auth.Api.csproj"
 COPY . .
 WORKDIR "/src/Auth.Api"
